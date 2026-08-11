@@ -1,0 +1,8 @@
+﻿name: astrbot_plugin_yjcbg
+display_name: 永劫无间藏宝阁查询
+desc: 查询永劫无间藏宝阁账号/商品数据，支持关键词搜索和商品详情查询。
+short_desc: 永劫无间藏宝阁数据查询。
+version: v0.1.0
+author: 君墨
+repo: ""
+astrbot_version: ">=3.4.15"
