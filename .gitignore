@@ -16,7 +16,6 @@ _dbg*.py
 _diag*.py
 _progress_out.txt
 _help_out.txt
-_conf_schema.json
 
 # 本地运行时数据（运行后生成，不入库）
 favorites.json

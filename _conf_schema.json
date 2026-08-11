@@ -1,0 +1,110 @@
+{
+  "base_url": {
+    "description": "藏宝阁站点地址",
+    "type": "string",
+    "hint": "默认使用永劫无间藏宝阁官网。",
+    "default": "https://yjwujian.cbg.163.com"
+  },
+  "api_prefix": {
+    "description": "API 前缀",
+    "type": "string",
+    "hint": "页面接口通常位于 /cgi/api；如果未来接口变化，可在这里覆盖。",
+    "default": "/cgi/api"
+  },
+  "cookie": {
+    "description": "Cookie",
+    "type": "text",
+    "hint": "登录 yjwujian.cbg.163.com 后，从浏览器开发者工具复制完整 Cookie 字符串（整个 Cookie 头，含 NTES_YD_SESS、NTES_YD_PASSPORT、S_INFO、P_INFO 等所有字段）。留空则只做公共查询（可能搜不到数据）。",
+    "default": ""
+  },
+  "timeout_seconds": {
+    "description": "请求超时秒数",
+    "type": "int",
+    "hint": "建议 8-20 秒。",
+    "default": 12
+  },
+  "max_results": {
+    "description": "搜索结果数量",
+    "type": "int",
+    "hint": "聊天消息里展示的最大条数。",
+    "default": 5
+  },
+  "debug_raw_error": {
+    "description": "调试错误",
+    "type": "bool",
+    "hint": "开启后会在查询失败时返回更详细的接口错误信息。",
+    "default": false
+  },
+  "id_scan_pages": {
+    "description": "编号搜索单类型扫描页数",
+    "type": "int",
+    "hint": "每个皮肤类型扫描的页数。0 表示遍历全部页（搜索所有编号，完整但较慢且极易触发风控）；为避免风控可设为 5-20 只扫前 N 页。",
+    "default": 0
+  },
+  "list_order_by": {
+    "description": "列表查询排序(编号/组合搜索)",
+    "type": "string",
+    "hint": "编号/组合搜索扫描列表时的排序参数。必须带排序才能拿到该类型的完整在售列表；默认按编号排序 attrs.client_show_id ASC（与网页一致），否则接口只返回推荐子集、会漏掉部分编号。",
+    "default": "attrs.client_show_id ASC"
+  },
+  "id_scan_interval": {
+    "description": "编号搜索请求间隔(秒)",
+    "type": "float",
+    "hint": "编号/星格搜索时每批请求之间的间隔（秒），越大越不易触发风控。建议 0.5-1.0。",
+    "default": 0.6
+  },
+  "batch_pages": {
+    "description": "每批查询页数",
+    "type": "int",
+    "hint": "编号/星格搜索时每批查询的页数（默认 10）。每批查询完会休息 batch_interval 秒再查下一批，以降低风控概率。",
+    "default": 10
+  },
+  "batch_interval": {
+    "description": "每批之间等待秒数",
+    "type": "float",
+    "hint": "编号/星格搜索时每批之间休息的秒数。越大越不易触发风控但越慢。建议 3-10。",
+    "default": 5
+  },
+  "star_scan_pages": {
+    "description": "星格搜索单类型扫描页数",
+    "type": "int",
+    "hint": "每个皮肤类型扫描的页数。0 表示遍历全部页（搜索所有星格商品，完整但较慢且极易触发风控）；为避免风控可设为 5-20 只扫前 N 页。",
+    "default": 0
+  },
+  "reminder_interval": {
+    "description": "提醒轮询间隔(秒)",
+    "type": "int",
+    "hint": "编号提醒功能的轮询间隔，越大越不易触发风控但提醒越不及时。建议 60-300。",
+    "default": 60
+  },
+  "request_concurrency": {
+    "description": "并发抓取页数",
+    "type": "int",
+    "hint": "编号/星格搜索时并发抓取的页面数，越小越稳但越慢。频繁风控时建议设为 1（串行）。建议 1-3。",
+    "default": 2
+  },
+  "reminder_scan_pages": {
+    "description": "提醒检查扫描页数",
+    "type": "int",
+    "hint": "编号提醒轮询时，每个皮肤类型只扫描最前 N 页（最新上架）以快速检测编号是否出现，避免遍历全部页触发风控。建议 3-10。",
+    "default": 5
+  },
+  "lowest_price_scan_pages": {
+    "description": "最低价查询扫描页数",
+    "type": "int",
+    "hint": "/最低价 查询时按价格升序扫描前 N 页取全局最低价。由于接口按价格升序返回，最便宜的通常在第 1 页，N 越大越稳但请求越多。建议 3-10。",
+    "default": 5
+  },
+  "request_interval": {
+    "description": "全局限流间隔(秒)",
+    "type": "float",
+    "hint": "所有藏宝阁请求之间的最小间隔（秒），越大越不易触发风控但搜索越慢。持续触发风控时建议调大（如 1.5-3.0）。",
+    "default": 1
+  },
+  "page_size": {
+    "description": "每页请求数量",
+    "type": "int",
+    "hint": "每次请求从接口取多少条商品/皮肤类型。调大（如 50-100）可显著减少请求总数、更快且更不易触发风控；但接口是否支持更大值需实测，过大可能报错或截断。建议 30-100。",
+    "default": 50
+  }
+}
